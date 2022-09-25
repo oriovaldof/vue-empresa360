@@ -4,6 +4,7 @@ import Contratos from '@/components/vendas/Contratos.vue';
 import Dashboard from '@/components/dashboard/Dashboard.vue';
 import Home from '@/views/Home.vue';
 import Leads from '@/components/vendas/Leads.vue';
+import Lead from '@/components/vendas/Lead.vue';
 import Login from '@/views/Login.vue';
 import Servicos from '@/components/servicos/Servicos.vue';
 import Site from '@/views/Site.vue';
@@ -25,6 +26,10 @@ const routes = [
                     {
                         path: 'leads', //localhost:8080/home/vendas/leads
                         component: Leads
+                    },
+                    {
+                        path: 'leads/:id', //localhost:8080/home/vendas/leads/5
+                        component: Lead
                     },
                     {
                         path: 'contratos', //localhost:8080/home/vendas/contratos
