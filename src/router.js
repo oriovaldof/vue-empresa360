@@ -9,6 +9,7 @@ import Login from '@/views/Login.vue';
 import Servicos from '@/components/servicos/Servicos.vue';
 import Site from '@/views/Site.vue';
 import Vendas from '@/components/vendas/Vendas.vue';
+import VendasPadrao from '@/components/vendas/VendasPadrao.vue';
 
 const routes = [
     {
@@ -25,21 +26,29 @@ const routes = [
                 children:[
                     {
                         path: 'leads', //localhost:8080/home/vendas/leads
-                        component: Leads
+                        component: Leads,
+                        name:'leads'
                     },
                     {
                         path: 'leads/:id', //localhost:8080/home/vendas/leads/5
-                        component: Lead
+                        component: Lead,
+                        name:'lead'
                     },
                     {
                         path: 'contratos', //localhost:8080/home/vendas/contratos
-                        component: Contratos
+                        component: Contratos,
+                        name:'contratos'
+                    },
+                    {
+                        path:'', //localhost:8080/home/vendas
+                        component: VendasPadrao
                     }
                 ]
             },
             {
                 path: 'servicos', //localhost:8080/home/servicos
-                component: Servicos
+                component: Servicos,
+                name:'servicos'
             },
             {
                 path: 'dashboard', //localhost:8080/home/dashboard
