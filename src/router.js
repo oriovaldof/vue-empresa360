@@ -6,6 +6,7 @@ import Home from '@/views/Home.vue';
 import Leads from '@/components/vendas/Leads.vue';
 import Lead from '@/components/vendas/Lead.vue';
 import Login from '@/views/Login.vue';
+import Servico from '@/components/servicos/Servico.vue';
 import Servicos from '@/components/servicos/Servicos.vue';
 import Site from '@/views/Site.vue';
 import Vendas from '@/components/vendas/Vendas.vue';
@@ -23,24 +24,24 @@ const routes = [
             {
                 path: 'vendas', //localhost:8080/home/vendas
                 component: Vendas,
-                children:[
+                children: [
                     {
                         path: 'leads', //localhost:8080/home/vendas/leads
                         component: Leads,
-                        name:'leads'
+                        name: 'leads'
                     },
                     {
                         path: 'leads/:id', //localhost:8080/home/vendas/leads/5
                         component: Lead,
-                        name:'lead'
+                        name: 'lead'
                     },
                     {
                         path: 'contratos', //localhost:8080/home/vendas/contratos
                         component: Contratos,
-                        name:'contratos'
+                        name: 'contratos'
                     },
                     {
-                        path:'', //localhost:8080/home/vendas
+                        path: '', //localhost:8080/home/vendas
                         component: VendasPadrao
                     }
                 ]
@@ -48,7 +49,14 @@ const routes = [
             {
                 path: 'servicos', //localhost:8080/home/servicos
                 component: Servicos,
-                name:'servicos'
+                name: 'servicos',
+                children: [
+                    {
+                        path: ':id', //localhost:8080/home/servicos/1
+                        component: Servico,
+                        name: 'servico'
+                    }
+                ]
             },
             {
                 path: 'dashboard', //localhost:8080/home/dashboard
