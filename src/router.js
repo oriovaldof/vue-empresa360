@@ -2,10 +2,13 @@ import { createRouter, createWebHistory } from 'vue-router';
 //createWebHashHistory
 import Contratos from '@/components/vendas/Contratos.vue';
 import Dashboard from '@/components/dashboard/Dashboard.vue';
+import DashboardRodape from '@/components/dashboard/DashboardRodape.vue';
 import Home from '@/views/Home.vue';
+import Indicadores from '@/components/servicos/Indicadores.vue';
 import Leads from '@/components/vendas/Leads.vue';
 import Lead from '@/components/vendas/Lead.vue';
 import Login from '@/views/Login.vue';
+import Opcoes from '@/components/servicos/Opcoes.vue';
 import Servico from '@/components/servicos/Servico.vue';
 import Servicos from '@/components/servicos/Servicos.vue';
 import Site from '@/views/Site.vue';
@@ -53,14 +56,22 @@ const routes = [
                 children: [
                     {
                         path: ':id', //localhost:8080/home/servicos/1
-                        component: Servico,
-                        name: 'servico'
+                        name: 'servico',
+                        components:{
+                            default: Servico,
+                            opcoes:Opcoes,
+                            indicadores: Indicadores,
+                        },
+                        
                     }
                 ]
             },
             {
                 path: 'dashboard', //localhost:8080/home/dashboard
-                component: Dashboard
+                components:{
+                    default:Dashboard,
+                    rodape: DashboardRodape
+                } 
             }
         ]
     },
