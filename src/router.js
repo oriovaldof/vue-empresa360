@@ -52,7 +52,8 @@ const routes = [
                     },
                     {
                         path: '', //localhost:8080/home/vendas
-                        component: VendasPadrao
+                        component: VendasPadrao,
+                        name: 'vendas'
                     }
                 ]
             },
@@ -86,6 +87,36 @@ const routes = [
     {
         path: '/login', //localhost:8080/login
         component: Login
+    },
+    { //redirencionaneto urls
+        path: '/redirecionamento-1',
+        redirect: '/home/servicos'
+    },
+    { //redirencionaneto urls
+        path: '/redirecionamento-2',
+        redirect: {
+            name: 'leads'
+        }
+    },
+    { //redirencionaneto urls
+        path: '/redirecionamento-3',
+        redirect: '/home/vendas'
+    },
+    { //redirencionaneto urls
+        path: '/redirecionamento-4',
+        redirect: {
+            name: 'vendas'
+        }
+    },
+    { //redirencionaneto urls com funcção
+        path: '/redirecionamento-5',
+        redirect: (to) => {
+            //podemos programar algo antes do redirecionamento ser efetivado
+            console.log(to);
+
+            // return '/home/vendas';
+            return { name: 'vendas' };
+        }
     }
 ];
 
