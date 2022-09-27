@@ -22,6 +22,8 @@ const routes = [
     },
     {
         path: '/home', //localhost:8080/home
+        alias: '/app', //apelido usand string
+        name: 'home',
         component: Home,
         children: [ //incluindo rotas filhas
             {
@@ -35,6 +37,11 @@ const routes = [
                     },
                     {
                         path: 'leads/:id', //localhost:8080/home/vendas/leads/5
+                        alias: [    //multiplos apelidos utilizando array
+                            '/l/:id',
+                            '/pessoa/:id',
+                            '/:id'
+                        ],
                         component: Lead,
                         name: 'lead'
                     },
@@ -56,22 +63,23 @@ const routes = [
                 children: [
                     {
                         path: ':id', //localhost:8080/home/servicos/1
+                        alias: '/s/:id', //apelido usando  string
                         name: 'servico',
-                        components:{
+                        components: {
                             default: Servico,
-                            opcoes:Opcoes,
+                            opcoes: Opcoes,
                             indicadores: Indicadores,
                         },
-                        
+
                     }
                 ]
             },
             {
                 path: 'dashboard', //localhost:8080/home/dashboard
-                components:{
-                    default:Dashboard,
+                components: {
+                    default: Dashboard,
                     rodape: DashboardRodape
-                } 
+                }
             }
         ]
     },
