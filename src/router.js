@@ -9,6 +9,7 @@ import Leads from '@/components/vendas/Leads.vue';
 import Lead from '@/components/vendas/Lead.vue';
 import Login from '@/views/Login.vue';
 import Opcoes from '@/components/servicos/Opcoes.vue';
+import PaginaNaoEncontrada from '@/views/PaginaNaoEncontrada.vue';
 import Servico from '@/components/servicos/Servico.vue';
 import Servicos from '@/components/servicos/Servicos.vue';
 import Site from '@/views/Site.vue';
@@ -117,6 +118,12 @@ const routes = [
             // return '/home/vendas';
             return { name: 'vendas' };
         }
+    },
+    { //para Rotas não existentes no sistema
+        // path:'*' //Vue versão 2
+        path: '/:catchAll(.*)*', //Vue versao 3
+        // redirect: '/' //usando redirect
+        component: PaginaNaoEncontrada //usando componete
     }
 ];
 
