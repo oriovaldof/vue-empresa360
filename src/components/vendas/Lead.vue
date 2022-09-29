@@ -42,10 +42,16 @@
   import ApiMixin from '@/mixins/ApiMixin';
 export default {
   name: "Lead",
+  props:['id','outroParametro'],
   mixins:[ApiMixin],
   created() {
     // console.log(this.$route.params);
-    this.getDadosApi(`http://localhost:3000/leads/${this.$route.params.id}`);
+    // console.log('-------------------------');
+    // console.log(this.$props);
+    // console.log(this.id, this.outroParametro);
+    // console.log('-------------------------');
+    // this.getDadosApi(`http://localhost:3000/leads/${this.$route.params.id}`);
+    this.getDadosApi(`http://localhost:3000/leads/${this.id}`);
   },
 };
 </script>

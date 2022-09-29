@@ -37,11 +37,12 @@ const routes = [
                         name: 'leads'
                     },
                     {
-                        path: 'leads/:id', //localhost:8080/home/vendas/leads/5
+                        path: 'leads/:id/:outroParametro', //localhost:8080/home/vendas/leads/5
+                        props:true,
                         alias: [    //multiplos apelidos utilizando array
-                            '/l/:id',
-                            '/pessoa/:id',
-                            '/:id'
+                            '/l/:id/:outroParametro',
+                            '/pessoa/:id/:outroParametro',
+                            '/:id/:outroParametro'
                         ],
                         component: Lead,
                         name: 'lead'
