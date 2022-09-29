@@ -1,15 +1,5 @@
 <template>
   <div>
-    <!-- <h5>Contratos</h5>
-      <div class="d-flex justify-content-between">
-
-     
-      <router-link class="btn btn-primary" :to="{name:'contratos',query:{leadId_like:1}}">LeadId=1</router-link>
-      <router-link class="btn btn-primary" to="/home/vendas/contratos?servicoId_like=2">ServicoId=1</router-link>
-
-      <router-link class="btn btn-success" :to="{name:'contratos',query:{leadId_like:1, servicoId_like:2 }}">LeadId=1 e ServicoId=2</router-link>
-      <router-link class="btn btn-success" to="/home/vendas/contratos?servicoId_like=2&leadId_like=2">ServicoId=1</router-link>
-    </div> -->
     <div class="card mb-4">
       <div class="card-header">Contratos</div>
       <div class="card-body">
@@ -76,31 +66,25 @@ export default {
   data: () => ({
     parametrosDeRelacionamento: "_expand=lead&_expand=servico",
     formPesquisa: {
-      id_like: '',
-      data_inicio_gte: '',
-      data_inicio_lte: '',
+      id_like: "",
+      data_inicio_gte: "",
+      data_inicio_lte: "",
     },
   }),
   methods: {
     pesquisar() {
-      Object.keys(this.formPesquisa).forEach(key => {
-        if(this.formPesquisa[key] == '') delete this.formPesquisa[key];
-      });
-      const queryParams = new URLSearchParams(this.formPesquisa).toString();
-      const url = `http://localhost:3000/contratos?${this.parametrosDeRelacionamento}&${queryParams}`;
-      this.getDadosApi(url);
+      const url = `http://localhost:3000/contratos?${this.parametrosDeRelacionamento}`;
+      this.getDadosApi(url, this.formPesquisa);
     },
   },
   created() {
-    const queryParams = new URLSearchParams(this.$route.query).toString();
-    const url = `http://localhost:3000/contratos?${this.parametrosDeRelacionamento}&${queryParams}`;
-    this.getDadosApi(url);
+    const url = `http://localhost:3000/contratos?${this.parametrosDeRelacionamento}`;
+    this.getDadosApi(url, this.$route.query);
   },
   beforeRouteUpdate(to, from, next) {
-    const queryParams = new URLSearchParams(to.query).toString();
-    const url = `http://localhost:3000/contratos?${this.parametrosDeRelacionamento}&${queryParams}`;
+    const url = `http://localhost:3000/contratos?${this.parametrosDeRelacionamento}`;
 
-    this.getDadosApi(url);
+    this.getDadosApi(url, to.query);
 
     next();
   },
