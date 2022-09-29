@@ -39,6 +39,23 @@ const routes = [
                     {
                         path: 'leads/:id/:outroParametro', //localhost:8080/home/vendas/leads/5
                         props:true,
+                        /*props:{ //sobrepondo parametros
+                            id:4,
+                            outroParametro:'pt-br'
+                        },*/
+                        /*
+                        props: (route) => {
+
+                            console.log('rota ativa', route);
+
+                            let teste = route.query.idioma ? route.query.idioma : route.params.outroParametro;
+                            //implementando uma lógica para definir as props que serão submetidas para o componente roteado
+                            return {
+                                id: parseInt(route.params.id)+1,
+                                outroParametro:teste
+                            }
+                        },
+                        */
                         alias: [    //multiplos apelidos utilizando array
                             '/l/:id/:outroParametro',
                             '/pessoa/:id/:outroParametro',
@@ -66,6 +83,12 @@ const routes = [
                 children: [
                     {
                         path: ':id', //localhost:8080/home/servicos/1
+                        props:{ //informa se os componentes vao poder recuperar os paramentros via props
+                            default: true, //permitindo recuperar via props
+                            // indicadores:false, //não permitinoo recuperar via propos
+                            indicadores:true, // permitinoo recuperar via propos
+                            opcoes: true // permitinoo recuperar via propos
+                        },
                         alias: '/s/:id', //apelido usando  string
                         name: 'servico',
                         components: {
