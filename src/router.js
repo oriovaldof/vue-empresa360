@@ -217,5 +217,15 @@ router.afterEach(() => {
     // console.log('Origem', from);
     // console.log('Destino', to);
 });
+/*
+beforeResolve - executado antes de navegar, porem após a conclusao das demais guardas de rota - recebe 'to','from'
+obs.: executada por ultimo porem antes da guarda de rota afterEach
+to = Destino;
+from = Origim;
+*/
+// router.beforeResolve((to,from)=>{
+router.beforeResolve(()=>{
+    console.log('Guarda global beforeResolve');
+});
 
 export default router;

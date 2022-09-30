@@ -11,6 +11,17 @@
         created(){
             // console.log('Opcoes', this.$route.params.id);
             // console.log('Opcoes parametro via props', this.id);
+        },
+        //Guardas de Componanete
+        /*
+            beforeRouteUpdate - executado quando a rota sofre alteracao - recebe 'to','from', 'next'
+            to = Destino;
+            from = Origim;
+            next = continua 
+        */
+        // beforeRouteUpdate(to, from, next){
+        beforeRouteUpdate(){
+            console.log("Guarda de componente beforeRouteUpdate");
         }
-    }
+    } 
 </script>
