@@ -30,7 +30,13 @@
         <!-- <router-link class="btn btn-danger" to="/home/vendas/leads">
           Fechar
         </router-link> -->
-        <button type="button"  class="btn btn-danger" @click="$router.push({name:'leads'})">Voltar</button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          @click="$router.push({ name: 'leads' })"
+        >
+          Voltar
+        </button>
       </div>
       <div class="col-md-6">
         <button type="button" class="btn btn-primary">Atualizar</button>
@@ -39,11 +45,11 @@
   </div>
 </template>
 <script>
-  import ApiMixin from '@/mixins/ApiMixin';
+import ApiMixin from "@/mixins/ApiMixin";
 export default {
   name: "Lead",
-  props:['id','outroParametro'],
-  mixins:[ApiMixin],
+  props: ["id", "outroParametro"],
+  mixins: [ApiMixin],
   created() {
     // console.log(this.$route.params);
     // console.log('-------------------------');
@@ -52,6 +58,24 @@ export default {
     // console.log('-------------------------');
     // this.getDadosApi(`http://localhost:3000/leads/${this.$route.params.id}`);
     this.getDadosApi(`http://localhost:3000/leads/${this.id}`);
+  },
+  /*
+      beforeRouteLeave - executado antes de deixar a rota de origem - recebe 'to','from', 'next'
+      obs.: executado antes do proprio componente ser instanciado, ou seja não acessa nenhum atributo
+      to = Destino;
+      from = Origim;
+      next = continua 
+  */
+  // beforeRouteLeave(to, from, next){
+  beforeRouteLeave() {
+    console.log("Guarda de componente beforeRouteLeave");
+    const confirmar = window.confirm("Deseja sair desse formulário?");
+
+    if (confirmar) {
+      return true;
+    } else {
+      return false;
+    }
   },
 };
 </script>

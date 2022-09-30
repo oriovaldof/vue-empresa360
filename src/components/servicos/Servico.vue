@@ -19,7 +19,7 @@ export default {
     // console.log('Servico', this.$route.params.id);
     // this.getDadosApi(`http://localhost:3000/servicos/${this.$route.params.id}`);
 
-    console.log('Servico via props', this.$props);
+    // console.log('Servico via props', this.$props);
     this.getDadosApi(`http://localhost:3000/servicos/${this.id}`);
   },
   beforeRouteUpdate(to, from, next){

@@ -19,10 +19,16 @@ import VendasPadrao from '@/components/vendas/VendasPadrao.vue';
 const routes = [
     {
         path: '/', //localhost:8080/
-        component: Site
+        component: Site,
+        meta: { //meta Fields
+            requerAutorizacao: false
+        }
     },
     {
         path: '/home', //localhost:8080/home
+        meta: { //meta Fields
+            requerAutorizacao: true
+        },
         alias: '/app', //apelido usand string
         name: 'home',
         component: Home,
@@ -34,11 +40,23 @@ const routes = [
                     {
                         path: 'leads', //localhost:8080/home/vendas/leads
                         component: Leads,
-                        name: 'leads'
+                        name: 'leads',
+                        //Guardas de Rotas
+                        /*
+                            beforeEnter - executado antes de entrar na rota de destino - recebe 'to','from', 'next'
+                            to = Destino;
+                            from = Origim;
+                            next = continua 
+                        */
+                        // beforeEnter: (to, from, next) => {
+                        beforeEnter: () => {
+                            //poderiamos verificar se o usuario tem permissão de carregar a rota
+                            console.log('Guarda de rota beforeEnter')
+                        }
                     },
                     {
                         path: 'leads/:id/:outroParametro', //localhost:8080/home/vendas/leads/5
-                        props:true,
+                        props: true,
                         /*props:{ //sobrepondo parametros
                             id:4,
                             outroParametro:'pt-br'
@@ -83,10 +101,10 @@ const routes = [
                 children: [
                     {
                         path: ':id', //localhost:8080/home/servicos/1
-                        props:{ //informa se os componentes vao poder recuperar os paramentros via props
+                        props: { //informa se os componentes vao poder recuperar os paramentros via props
                             default: true, //permitindo recuperar via props
                             // indicadores:false, //não permitinoo recuperar via propos
-                            indicadores:true, // permitinoo recuperar via propos
+                            indicadores: true, // permitinoo recuperar via propos
                             opcoes: true // permitinoo recuperar via propos
                         },
                         alias: '/s/:id', //apelido usando  string
@@ -111,7 +129,12 @@ const routes = [
     },
     {
         path: '/login', //localhost:8080/login
-        component: Login
+        component: Login,
+        meta: { //meta Fields
+            requerAutorizacao: false,
+            campo2: 'teste',
+            campo3: 50
+        }
     },
     { //redirencionaneto urls
         path: '/redirecionamento-1',
@@ -154,6 +177,45 @@ const routes = [
 const router = createRouter({
     history: createWebHistory(),
     routes: routes
+});
+
+//Guardas de Rotas global
+/*
+beforeEach - executado antes de entrar na rota de destino - recebe 'to','from', 'next'
+to = Destino;
+from = Origim;
+next = continua //vai ser descontinuado no Vue4
+*/
+// router.beforeEach((to,from,next) => {
+router.beforeEach(() => {
+    console.log('Guarda global beforeEach');
+    // console.log(to.meta);
+
+    // if (to.meta.requerAutorizacao) {
+    //     console.log('Validar o acesso');
+    //     // return false;
+    // } else {
+    //     console.log('Apenas seguir a navegacao')
+    // }
+
+    // console.log('Origem', from);
+    // console.log('Destino', to);
+
+    // // verifica se o usuario esta autorizado a acessar aquela rota
+    // console.log('Método executado antes do acesso a rota destino');
+});
+
+/*
+afterEach - executado antes de entrar na rota de destino - recebe 'to','from'
+to = Destino;
+from = Origim;
+*/
+// router.afterEach((to,from) => {
+router.afterEach(() => {
+    console.log('Guarda global afterEach');
+    // console.log('Guarda de rota executada após a conclusão da navegacao');
+    // console.log('Origem', from);
+    // console.log('Destino', to);
 });
 
 export default router;

@@ -38,5 +38,28 @@ export default {
   created() {
     this.getDadosApi("http://localhost:3000/leads");
   },
+  //Guardas de Componanete
+  /*
+      beforeRouteEnter - executado antes de nvagear na rota de destino - recebe 'to','from', 'next'
+      obs.: executado antes do proprio componente ser instanciado, ou seja não acessa nenhum atributo
+      to = Destino;
+      from = Origim;
+      next = continua 
+  */
+  // beforeRouteEnter(to, from, next){
+  beforeRouteEnter(){
+    console.log('Guarda de componente beforeRouteEnter');
+  },
+    /*
+      beforeRouteLeave - executado antes de deixar a rota de origem - recebe 'to','from', 'next'
+      obs.: executado antes do proprio componente ser instanciado, ou seja não acessa nenhum atributo
+      to = Destino;
+      from = Origim;
+      next = continua 
+  */
+  // beforeRouteLeave(to, from, next){
+  beforeRouteLeave(){
+    console.log('Guarda de componente beforeRouteLeave');
+  }
 };
 </script>
