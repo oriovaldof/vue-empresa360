@@ -176,6 +176,31 @@ const routes = [
 
 const router = createRouter({
     history: createWebHistory(),
+    // scrollBehavior (to, from, savedPosition) {
+    scrollBehavior (to, from, savedPosition) {
+      /*  return {
+            left: 0, //left = representa o eixo X ou seja a barra de rolagem do rodape
+            top: 0 //top = representa o eixo Y ou seja a barra de rolagem lateral
+        }*/
+        // console.log(savedPosition)
+
+        if(savedPosition){
+            return savedPosition;
+        }
+
+        if(to.hash){
+            return{
+                el: to.hash //to.hash deve corresponder a um id de elemento html
+            }
+            //fragmento = #secao_1 => id= secao_i
+        }
+
+        return{
+            left: 0,
+            top:0
+        }
+
+    },
     routes: routes
 });
 
@@ -188,7 +213,7 @@ next = continua //vai ser descontinuado no Vue4
 */
 // router.beforeEach((to,from,next) => {
 router.beforeEach(() => {
-    console.log('Guarda global beforeEach');
+    // console.log('Guarda global beforeEach');
     // console.log(to.meta);
 
     // if (to.meta.requerAutorizacao) {
@@ -212,7 +237,7 @@ from = Origim;
 */
 // router.afterEach((to,from) => {
 router.afterEach(() => {
-    console.log('Guarda global afterEach');
+    // console.log('Guarda global afterEach');
     // console.log('Guarda de rota executada após a conclusão da navegacao');
     // console.log('Origem', from);
     // console.log('Destino', to);
@@ -225,7 +250,7 @@ from = Origim;
 */
 // router.beforeResolve((to,from)=>{
 router.beforeResolve(()=>{
-    console.log('Guarda global beforeResolve');
+    // console.log('Guarda global beforeResolve');
 });
 
 export default router;
